@@ -9,15 +9,11 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        curr_node = head
-        node_list = []
+        fast_point = head
+        slow_point = head
 
-        while curr_node != None:
-            node_list.append(curr_node)
+        while fast_point is not None and fast_point.next is not None:
+            fast_point = fast_point.next.next
+            slow_point = slow_point.next
 
-            curr_node = curr_node.next
-
-        list_len = len(node_list) - 1
-        mid_node = (list_len // 2) + (list_len % 2)
-
-        return(node_list[mid_node])
+        return(slow_point)
