@@ -10,6 +10,12 @@ class Solution(object):
         :rtype: ListNode
         """
         
+        i = 0 
+        j = 0
+        i = None
+
+        while j < lists:
+            if lists[i].val <= lists[j].val:
 
 
 
