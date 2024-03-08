@@ -1,9 +1,5 @@
 class Solution(object):
     def maxFrequencyElements(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
         max_frq = 0
         total_frq = 0
         num_dict = {}
@@ -14,7 +10,7 @@ class Solution(object):
                 num_dict[num] += 1
             else:
                 num_dict[num] = 1
-                
+
             if num_dict[num] > max_frq:
                 max_frq = num_dict[num]
                 total_frq = 1
