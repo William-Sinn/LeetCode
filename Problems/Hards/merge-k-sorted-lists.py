@@ -10,13 +10,15 @@ class Solution(object):
         :rtype: ListNode
         """
         
-        i = 0 
+        i = 0
         j = 0
-        i = None
+        k = 0
+        l_list = ListNode
 
-        while j < lists:
-            if lists[i].val <= lists[j].val:
+        while k < len(lists):
+            if lists[i] <= lists[j]
 
+            
 
 
 
