@@ -1,17 +1,15 @@
 class Solution(object):
     def firstMissingPositive(self, nums):
-
-        min_num = 1
-        num_dict = {}
+        num_length = len(nums)
 
         for num in nums:
+            index = num - 1
+            if index >= 0 and index < num_length:
+                int_index = int(index)
+                nums[int_index] = float(nums[int_index])
 
-            if num not in num_dict:
-                num_dict[num] = num
+        for i in range(num_length):
+            if isinstance(nums[i], int):
+                return i + 1
 
-            if num == min_num & num > 0:
-
-                while min_num in num_dict:
-                    min_num += 1
-        
-        return min_num
+        return num_length + 1
