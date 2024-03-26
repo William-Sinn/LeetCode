@@ -16,7 +16,7 @@ class Solution(object):
         l_list = ListNode
 
         while k < len(lists):
-            if lists[i] <= lists[j]
+            if lists[i] <= lists[j]:
 
             
 
