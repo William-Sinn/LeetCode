@@ -5,21 +5,26 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        freq = defaultdict(int)
+        start_p = 0
+        max_length = 0
+        max_freq = 0  # Track the maximum frequency
 
-        key_dict = {}
-        i = 0
+        for end_p, num in enumerate(nums):
+            freq[num] += 1
+            max_freq = max(max_freq, freq[num])  # Update max_freq
 
-        for num in nums:
-            if num not in key_dict:
-                key_dict[num] = 1
-            else:
-                key_dict[num] += 1
+            while max_freq > k:
+                freq[nums[start_p]] -= 1
+                if freq[nums[start_p]] == 0:
+                    del freq[nums[start_p]]
+                start_p += 1
 
-            freq = key_dict[num]
+                # Recalculate max_freq
+                if freq:  # Check if freq is not empty
+                    max_freq = max(freq.values())
 
-            if freq > k:
-                return(i)
-            else:
-                i += 1
+            # Update max_length outside the while loop
+            max_length = max(max_length, end_p - start_p + 1)
 
-        return i
+        return max_length
