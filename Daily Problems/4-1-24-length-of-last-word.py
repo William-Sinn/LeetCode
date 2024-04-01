@@ -4,12 +4,12 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-
         l = 0
+        s_len = len(s) - 1
 
-        for c in range(len(s) - 1, 0, -1):
+        for c in range(s_len + 1):
 
-            if s[c] == " ":
+            if s[s_len - c] == " ":
                 if l > 0:
                     break
             else:
