@@ -1,1 +1,5 @@
 .mono
+c#/.mono
+c#/bin
+c#/obj
+c#/c#.csproj
