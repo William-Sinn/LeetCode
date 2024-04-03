@@ -3,10 +3,6 @@ public class Solution {
 
         Dictionary<char, char> char_dict = new Dictionary<char, char>{};
 
-        if (t.Length != s.Length) {
-            return false;
-        }
-        
         int i = 0;
         foreach (char c in s){
 
@@ -14,19 +10,15 @@ public class Solution {
                 if (char_dict.ContainsValue(t[i])) {
                     return false;
                 }
-
                 char_dict[c] = t[i];
             }
             else {
                 if (char_dict[c] != t[i]) {
                     return false;
                 }
-                
             }
             i++;
         }
-
         return true;
-        
     }
 }
