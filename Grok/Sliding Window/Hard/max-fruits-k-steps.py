@@ -6,7 +6,8 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        fruits = 0
+        max_fruits = 0
+        curr_fruits = 0
         right_path = {}
         left_path = {}
         right_pre = 0
@@ -16,6 +17,7 @@ class Solution(object):
         right = startPos
         prim_dir = right
         sec_dir = left
+        i = 1
 
         for fruit in fruits:
             if fruit[0] > startPos:
@@ -35,13 +37,25 @@ class Solution(object):
             path = left_path
             prim_dir = left
             sec_dir = right
+            i = -1
 
         if (len(right_path) or len(left_path)):
             while abs(left - right) < k:
-                prim_dir += 1
+                prim_dir += i
                 if prim_dir in path:
-                    fruits += path[prim_dir]
-            while abs
+                    max_fruits += path[prim_dir]
 
+            curr_fruits = max_fruits
+
+            while prim_dir != startPos:
+                if prim_dir in path:
+                    curr_fruits -= path[prim_dir]
+                prim_dir += -i
+
+                sec_dir += -i
+                if sec_dir in path:
+                    curr_fruits += path[prim_dir]
+                
+                max_fruits = max(max_fruits, curr_fruits)
 
         return fruits
