@@ -42,26 +42,39 @@ class Solution(object):
             i = -1
 
         if (len(right_path) or len(left_path)):
-            while abs(left[0] - right[0]) < k and prim_dir[0] >= 0:
+            while abs(left[0] - right[0]) < k and prim_dir[0] > 0:
                 prim_dir[0] += i
                 if prim_dir[0] in path:
                     max_fruits += path[prim_dir[0]]
 
             curr_fruits = max_fruits
+            print(left, right, max_fruits, curr_fruits)
 
             if prim_dir[0] in path:
                 curr_fruits -= path[prim_dir[0]]
 
-            while prim_dir[0] != startPos and sec_dir[0] >= 0:
+            odd = 1
+            while abs(sec_dir[0] - startPos) <= k/2 and sec_dir[0] >= 0:
+                if odd != 1:
+                    print(left, right, max_fruits, curr_fruits)
+
+                    prim_dir[0] += -i
+                    if prim_dir[0] in path:
+                        curr_fruits -= path[prim_dir[0]]
+
                 prim_dir[0] += -i
                 if prim_dir[0] in path:
                     curr_fruits -= path[prim_dir[0]]
 
                 sec_dir[0] += -i
+                
+                odd += 1
                 if sec_dir[0] in sec_path:
                     curr_fruits += sec_path[sec_dir[0]]
+                    del sec_path[sec_dir[0]]
                 
                 max_fruits = max(max_fruits, curr_fruits)
+                print(left, right, max_fruits, curr_fruits)
 
 
         return max_fruits
