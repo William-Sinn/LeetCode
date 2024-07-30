@@ -1,5 +1,4 @@
-from heapq import heappush, heappop
-
+from collections import deque
 class Solution(object):
     def shortestSubarray(self, nums, k):
         """
@@ -7,39 +6,27 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        prefix = [0]
+        mono_stack = deque()
+        ans = float("inf")
 
-        num_heap = []
-        win_size = float('inf')
-        pref_array = []
-        pref_sum = 0
-        num_dict = {}
-
-        i = 0
         for num in nums:
-            heappush(num_heap, -num)
+            prefix.append(prefix[-1] + num)
 
-            pref_sum += num
-            pref_array.append(pref_sum)
+        print(prefix)
 
-            num_dict[num] = i
-            i += 1
+        for right in range(len(prefix)):
+            print(mono_stack)
+            while mono_stack and prefix[right] <= prefix[mono_stack[-1]]:
+                mono_stack.pop()
+
+            if mono_stack:
+                print(prefix[right], prefix[mono_stack[0]])
+            while mono_stack and prefix[right] - prefix[mono_stack[0]] >= k:
+                print(ans, prefix[right], prefix[mono_stack[0]])
+                ans = min(ans, right - mono_stack.popleft())
+                print(mono_stack)
+            
+            mono_stack.append(right)
         
-        if pref_array[-1] < k:
-            return -1
-        elif pref_array == k:
-            return len(nums) 
-
-        while len(num_heap):
-            sum = 0
-            num = -heappop(num_heap)
-            curr_win = 1
-            left = right = num_dict[num]
-            pref_left = 0
-            pref_right = 0
-
-            while sum < k:
-                if curr_win >= win_size:
-                    break
-
-                if left -1 < 0 or 
-
+        return ans if ans != float("inf") else -1
