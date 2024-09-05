@@ -10,21 +10,12 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
-        head_dict = {}
+        pA = headA
+        pB = headB
 
-        while headA.next != None or headB.next != None:
-            if headA.next != None:
-                if headA in head_dict:
-                    return headA
-                head_dict[headA] = 1
-                headA = headA.next
-
-            if headB.next != None:
-                if headB in head_dict:
-                    return headB
-                head_dict[headB] = 1
-
-                headB = headB.next
+        while pA != pB:
+            pA = pA.next if pA is not None else headB
+            pB = pB.next if pB is not None else headA
         
-        return headB if headA == headB else None
+        return pA
         
